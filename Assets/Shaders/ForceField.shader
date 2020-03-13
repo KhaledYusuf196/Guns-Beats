@@ -1,10 +1,13 @@
 ﻿Shader "Custom/ForceField"
 {
 	Properties{
-		_Color("Border Color", Color) = (0, 0, 0, 0.5)
+		_Offset("Offset Color", Color) = (0, 0, 0, 0.5)
+		_Color("Corner Color", Color) = (0, 0, 0, 0.5)
 		_ColorX("Border Color X", Color) = (0, 0, 0, 0.5)
 		_ColorY("Border Color Y", Color) = (0, 0, 0, 0.5)
-		_Border("Border", Range(0,1)) = 0.5
+
+		_Intensity("Offset Intensity", Range(0,1)) = 0.5
+		_Border("Corner", Range(0,1)) = 0.5
 		_BorderX("Border X", Range(0,0.5)) = 0.5
 		_BorderY("Border Y", Range(0,0.5)) = 0.5
 	}
@@ -23,9 +26,11 @@
 				#pragma vertex vert
 				#pragma fragment frag
 
+				fixed4 _Offset;
 				fixed4 _Color;
 				fixed4 _ColorX;
 				fixed4 _ColorY;
+				float1 _Intensity;
 				float1 _Border;
 				float1 _BorderX;
 				float1 _BorderY;
@@ -63,7 +68,8 @@
 					if (distance < _Border) {
 						col *= distance / _Border;
 					}
-					col += colX + colY;
+					col += colX + colY + _Offset * _Intensity;
+					col.a = _Offset.a + colX.a * distanceX + colY.a * distanceY;
 					return col;
 				}
 

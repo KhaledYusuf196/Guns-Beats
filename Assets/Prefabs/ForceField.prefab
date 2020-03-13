@@ -106,3 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fbef84f393fec468b312e3b63d19f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CornerBorderOffset: 0.25
+  SideBorderOffset: 0.125
+  IntensityOffset: 0.25
