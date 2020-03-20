@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class BeatSpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BeatSpawner : MonoBehaviour
     int currentBeat = 0;
     public GameObject beat;
     public GameObject ActiveBeats;
+    [SerializeField] PlayableDirector music;
 
     // Start is called before the first frame update
     public void StartBeat()
@@ -21,7 +23,8 @@ public class BeatSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time + offsetTime >= level.BeatTimes[currentBeat] * 60 / level.BeatRate + level.Offset)
+        print(music.time);
+        if (music.time >= level.BeatTimes[currentBeat] * 60 / level.BeatRate + level.Offset)
         {
             SpawnBeat(level.BeatPositions[currentBeat]);
             currentBeat++;

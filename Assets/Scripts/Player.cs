@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject PistolLeft;
     [SerializeField] GameObject PistolRight;
     [SerializeField] GameObject Bullets;
-    [SerializeField] Camera camera;
     private LineRenderer laserLine;                                        // Reference to the LineRenderer component which will display our laserline
     public int gunDamage = 1;                                            // Set the number of hitpoints that this gun will take away from shot objects with a health script
     public float fireRate = 0.25f;                                        // Number in seconds which controls how often the player can fire
@@ -41,7 +40,7 @@ public class Player : MonoBehaviour
         //WeaponTransform = PistolLeft.transform;
         //var bullet = Instantiate(Bullets, WeaponTransform.position, WeaponTransform.rotation);
     
-        Vector3 rayOrigin = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
         // Declare a raycast hit to store information about what our raycast has hit
         RaycastHit hit;
@@ -50,7 +49,7 @@ public class Player : MonoBehaviour
         laserLine.SetPosition(0, Right.position);
 
         // Check if our raycast has hit anything
-        if (Physics.Raycast(rayOrigin, camera.transform.forward, out hit, weaponRange))
+        if (Physics.Raycast(rayOrigin, Camera.main.transform.forward, out hit, weaponRange))
         {
             // Set the end position for our laser line 
             laserLine.SetPosition(1, hit.point);
@@ -69,8 +68,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            // If we did not hit anything, set the end of the line to a position directly in front of the camera at the distance of weaponRange
-            laserLine.SetPosition(1, rayOrigin + (camera.transform.forward * weaponRange));
+            // If we did not hit anything, set the end of the line to a position directly in front of the Camera.main  at the distance of weaponRange
+            laserLine.SetPosition(1, rayOrigin + (Camera.main .transform.forward * weaponRange));
         }
 
             Debug.Log("Fire left weapon");
@@ -78,7 +77,7 @@ public class Player : MonoBehaviour
 
     public void FireRightWeapon(Transform WeaponTransform)
     {
-        Vector3 rayOrigin = camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        Vector3 rayOrigin = Camera.main .ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
         // Declare a raycast hit to store information about what our raycast has hit
         RaycastHit hit;
@@ -87,7 +86,7 @@ public class Player : MonoBehaviour
         laserLine.SetPosition(0, Left.position);
 
         // Check if our raycast has hit anything
-        if (Physics.Raycast(rayOrigin, camera.transform.forward, out hit, weaponRange))
+        if (Physics.Raycast(rayOrigin, Camera.main .transform.forward, out hit, weaponRange))
         {
             // Set the end position for our laser line 
             laserLine.SetPosition(1, hit.point);
@@ -106,8 +105,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            // If we did not hit anything, set the end of the line to a position directly in front of the camera at the distance of weaponRange
-            laserLine.SetPosition(1, rayOrigin + (camera.transform.forward * weaponRange));
+            // If we did not hit anything, set the end of the line to a position directly in front of the Camera.main  at the distance of weaponRange
+            laserLine.SetPosition(1, rayOrigin + (Camera.main .transform.forward * weaponRange));
         }
         //TODO: Fire right Weapon
         Debug.Log("Fire right weapon");
