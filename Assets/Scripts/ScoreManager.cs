@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     public void IncrementScore()
     {
         //TODO : implement score increment
+        Score++;
         ScoreText.text = Score.ToString();
     }
 
