@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7130be79f69fc834488e1dd06f459915, type: 3}
   m_Name: All Star
   m_EditorClassIdentifier: 
-  Offset: 0.4
-  BeatRate: 150
+  Offset: 0.17
+  BeatRate: 50
   DamageRate: 0
   WeaponChargeSpeed: 0
   WeaponMaxCharge: 0
